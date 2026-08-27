@@ -4,9 +4,14 @@ import styles from "./TaskList.module.css";
 interface ITaskListProps {
   taskList: ITaks[];
   handleDeleteList(id: number): void;
+  handleEditTask(): void;
 }
 
-function TaskList({ taskList, handleDeleteList }: ITaskListProps) {
+function TaskList({
+  taskList,
+  handleDeleteList,
+  handleEditTask,
+}: ITaskListProps) {
   return (
     <>
       {taskList.length > 0 ? (
@@ -17,7 +22,12 @@ function TaskList({ taskList, handleDeleteList }: ITaskListProps) {
               <p>Difficulty{task.difficulty}</p>
             </div>
             <div className={styles.actions}>
-              <i className="bi bi-pencil"></i>
+              <i
+                className="bi bi-pencil"
+                onClick={() => {
+                  handleEditTask();
+                }}
+              ></i>
               <i
                 className="bi bi-trash"
                 onClick={() => {

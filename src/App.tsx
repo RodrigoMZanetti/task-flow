@@ -22,9 +22,22 @@ function App() {
     );
   }
 
+  function handleOpenAndCloseModal(display: boolean) {
+    const modal = document.querySelector("#modal");
+    if (display) {
+      modal!.classList.remove("hide");
+    } else {
+      modal!.classList.add("hide");
+    }
+  }
+
+  function handleEditTask(): void {
+    handleOpenAndCloseModal(true);
+  }
+
   return (
     <>
-      <Modal />
+      <Modal children={<TaskForm btnText="Edit Task" taskList={taskList} />} />
       <Header />
       <main className={styles.main}>
         <div>
@@ -37,7 +50,11 @@ function App() {
         </div>
         <div>
           <h2>Your shores</h2>
-          <TaskList taskList={taskList} handleDeleteList={deleteTask} />
+          <TaskList
+            taskList={taskList}
+            handleDeleteList={deleteTask}
+            handleEditTask={handleEditTask}
+          />
         </div>
       </main>
       <Footer />
