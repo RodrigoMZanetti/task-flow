@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
+import Modal from "./components/Modal";
 
 //interface
 import type { ITaks } from "./interfaces/Task";
@@ -13,8 +14,17 @@ import type { ITaks } from "./interfaces/Task";
 function App() {
   const [taskList, setTaskList] = useState<ITaks[]>([]);
 
+  function deleteTask(id: number) {
+    setTaskList(
+      taskList.filter((task) => {
+        return task.id !== id;
+      }),
+    );
+  }
+
   return (
     <>
+      <Modal />
       <Header />
       <main className={styles.main}>
         <div>
@@ -27,7 +37,7 @@ function App() {
         </div>
         <div>
           <h2>Your shores</h2>
-          <TaskList taskList={taskList} />
+          <TaskList taskList={taskList} handleDeleteList={deleteTask} />
         </div>
       </main>
       <Footer />

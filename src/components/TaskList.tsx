@@ -3,9 +3,10 @@ import styles from "./TaskList.module.css";
 
 interface ITaskListProps {
   taskList: ITaks[];
+  handleDeleteList(id: number): void;
 }
 
-function TaskList({ taskList }: ITaskListProps) {
+function TaskList({ taskList, handleDeleteList }: ITaskListProps) {
   return (
     <>
       {taskList.length > 0 ? (
@@ -17,7 +18,12 @@ function TaskList({ taskList }: ITaskListProps) {
             </div>
             <div className={styles.actions}>
               <i className="bi bi-pencil"></i>
-              <i className="bi bi-trash"></i>
+              <i
+                className="bi bi-trash"
+                onClick={() => {
+                  handleDeleteList(task.id);
+                }}
+              ></i>
             </div>
           </div>
         ))
