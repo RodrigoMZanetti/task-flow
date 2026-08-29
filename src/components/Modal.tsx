@@ -1,26 +1,14 @@
 import styles from "./Modal.module.css";
+import type React from "react";
 
 interface ModalProps {
   children: React.ReactNode;
 }
 
 function Modal({ children }: ModalProps) {
-  function handleCloseModal(e: React.MouseEvent): void {
+  function handleCloseModal(): void {
     const modal = document.querySelector("#modal");
     modal!.classList.add("hide");
-  }
-
-  function handleOpenAndCloseModal(display: boolean) {
-    const modal = document.querySelector("#modal");
-    if (display) {
-      modal!.classList.remove("hide");
-    } else {
-      modal!.classList.add("hide");
-    }
-  }
-
-  function handleEditTask(): void {
-    handleOpenAndCloseModal(true);
   }
 
   return (

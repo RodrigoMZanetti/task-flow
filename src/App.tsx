@@ -9,10 +9,11 @@ import TaskList from "./components/TaskList";
 import Modal from "./components/Modal";
 
 //interface
-import type { ITaks } from "./interfaces/Task";
+import type { ITasks } from "./interfaces/Task";
 
 function App() {
-  const [taskList, setTaskList] = useState<ITaks[]>([]);
+  const [taskList, setTaskList] = useState<ITasks[]>([]);
+  const [taskToUpdate, setTaskToUpdate] = useState<ITasks | null>(null);
 
   function deleteTask(id: number) {
     setTaskList(
@@ -31,13 +32,32 @@ function App() {
     }
   }
 
-  function handleEditTask(): void {
+  function handleEditTask(task: ITasks): void {
     handleOpenAndCloseModal(true);
+    setTaskToUpdate(task);
+  }
+
+  function handleUpdateTask(id: number, title: string, difficulty: number) {
+    const updatedTask: ITasks = { id, title, difficulty };
+    const updatedList = taskList.map((task) => {
+      return task.id === updatedTask.id ? updatedTask : task;
+    });
+    setTaskList(updatedList);
+    handleOpenAndCloseModal(false);
   }
 
   return (
     <>
-      <Modal children={<TaskForm btnText="Edit Task" taskList={taskList} />} />
+      <Modal
+        children={
+          <TaskForm
+            btnText="Edit Task"
+            taskList={taskList}
+            task={taskToUpdate}
+            handleUpdate={handleUpdateTask}
+          />
+        }
+      />
       <Header />
       <main className={styles.main}>
         <div>
@@ -49,7 +69,7 @@ function App() {
           />
         </div>
         <div>
-          <h2>Your shores</h2>
+          <h2>Your to-dos</h2>
           <TaskList
             taskList={taskList}
             handleDeleteList={deleteTask}

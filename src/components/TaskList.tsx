@@ -1,10 +1,10 @@
-import type { ITaks } from "../interfaces/Task";
+import type { ITasks } from "../interfaces/Task";
 import styles from "./TaskList.module.css";
 
 interface ITaskListProps {
-  taskList: ITaks[];
+  taskList: ITasks[];
   handleDeleteList(id: number): void;
-  handleEditTask(): void;
+  handleEditTask(task: ITasks): void;
 }
 
 function TaskList({
@@ -19,13 +19,13 @@ function TaskList({
           <div key={task.id} className={styles.task}>
             <div className={styles.details}>
               <h4>{task.title}</h4>
-              <p>Difficulty{task.difficulty}</p>
+              <p>Difficulty: {task.difficulty}</p>
             </div>
             <div className={styles.actions}>
               <i
                 className="bi bi-pencil"
                 onClick={() => {
-                  handleEditTask();
+                  handleEditTask(task);
                 }}
               ></i>
               <i
@@ -38,7 +38,7 @@ function TaskList({
           </div>
         ))
       ) : (
-        <p>There are nothing to do yet</p>
+        <p>There is nothing to do yet</p>
       )}
     </>
   );

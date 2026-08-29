@@ -1,9 +1,15 @@
 .main {
   min-height: 60vh;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
   text-align: center;
-  padding: 2em;
 }
 
 .main h2 {
-  margin-bottom: 0.8em;
+  margin-bottom: 0.8rem;
+  font-size: 1.4rem;
 }
