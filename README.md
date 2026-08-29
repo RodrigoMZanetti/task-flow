@@ -2,7 +2,7 @@
 
 A simple, responsive to-do list app built with **React + TypeScript**, where users can create, edit, and delete tasks with a difficulty rating.
 
-🔗 **[Live demo](https://rodrigomzanetti.github.io/task-flow/)**
+🔗 **[Oficial Website - Live demo](https://rodrigomzanetti.github.io/task-flow/)**
 
 ![demo](./public/gif.gif)
 
